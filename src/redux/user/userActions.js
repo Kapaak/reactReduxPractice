@@ -3,6 +3,7 @@ import {
 	FETCH_USERS_FAILURE,
 	FETCH_USERS_SUCCESS,
 	FETCH_USERS_REQUEST,
+	ALTER_USER_DATA,
 } from "./userTypes";
 
 export const fetchUsersRequest = () => {
@@ -23,9 +24,16 @@ export const fetchUsersFailure = error => {
 	};
 };
 
+export const alterUserData = newData => {
+	return {
+		type: ALTER_USER_DATA,
+		payload: newData,
+	};
+};
+
 export const fetchUsers = () => {
 	return dispatch => {
-		dispatch(fetchUsersRequest);
+		dispatch(fetchUsersRequest());
 		axios
 			.get("https://jsonplaceholder.typicode.com/users")
 			.then(response => {

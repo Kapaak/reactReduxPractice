@@ -2,6 +2,7 @@ import {
 	FETCH_USERS_FAILURE,
 	FETCH_USERS_SUCCESS,
 	FETCH_USERS_REQUEST,
+	ALTER_USER_DATA,
 } from "./userTypes";
 
 const initialState = {
@@ -28,6 +29,12 @@ const reducer = (state = initialState, action) => {
 				loading: false,
 				users: [],
 				error: action.payload,
+			};
+		case ALTER_USER_DATA:
+			return {
+				loading: false,
+				users: action.payload,
+				error: "",
 			};
 
 		default:
