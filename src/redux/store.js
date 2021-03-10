@@ -1,11 +1,14 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import rootReducer from "./rootReducer";
-import { composeWithDevTools } from "redux-devtools-extension";
+import cakeReducer from "./cake/cakeReducer";
+import icecreamReducer from "./icecream/icecreamReducer";
+import userReducer from "./user/userReducer";
+import { configureStore } from "@reduxjs/toolkit";
 
-const store = createStore(
-	rootReducer,
-	composeWithDevTools(applyMiddleware(thunk))
-);
+const store = configureStore({
+	reducer: {
+		cake: cakeReducer,
+		icecream: icecreamReducer,
+		user: userReducer,
+	},
+});
 
 export default store;

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
 	buyCake,
@@ -7,20 +6,18 @@ import {
 	buyMultipleIcecreams,
 	fetchUsers,
 	alterUserData,
+	deleteUserData,
 } from "../redux";
 const TextElement = () => {
-	const [persons, setPersons] = useState([]);
 	const numOfCakes = useSelector(state => state.cake.numOfCakes);
 	const numOfIcecreams = useSelector(state => state.icecream.numOfIcecreams);
-	// const getData = useSelector(async state => await state.user)
-	// 	.then(resp => setPersons(resp.users))
-	// 	.catch(err => err.message);
 	const getData = useSelector(state => state.user.users);
 
 	const dispatch = useDispatch();
 	const fetchHandler = () => {
 		dispatch(fetchUsers());
 	};
+
 	return (
 		<div>
 			<p>Number of cakes - {numOfCakes}</p>
@@ -33,14 +30,19 @@ const TextElement = () => {
 			</button>
 
 			<button onClick={fetchHandler}> fetchni users</button>
-			{/* <button onClick={() => dispatch(fetchHandler)}> fetchni users</button> //this worked lol */}
-			{/* <button onClick={() => dispatch(fetchUsers())}> fetchni users</button> */}
-			<button onClick={() => dispatch(alterUserData(["Pavel", "Bara"]))}>
+			<button
+				onClick={() =>
+					dispatch(alterUserData([{ title: "Pavel" }, { title: "Bar" }]))
+				}
+			>
 				Alter data
 			</button>
+			<button onClick={() => dispatch(deleteUserData())}>
+				Delete all user data
+			</button>
 
-			{getData.map((el, index) => (
-				<div key={index}>{el.name}</div>
+			{getData?.map((el, index) => (
+				<div key={index}>{el.title}</div>
 			))}
 		</div>
 	);

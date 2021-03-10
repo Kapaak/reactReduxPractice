@@ -1,3 +1,3 @@
-export { buyCake, returnCake } from "./cake/cakeActions";
-export { buyIcecream, buyMultipleIcecreams } from "./icecream/icecreamActions";
-export { fetchUsers, alterUserData } from "./user/userActions";
+export { buyCake, returnCake } from "./cake/cakeReducer";
+export { buyIcecream, buyMultipleIcecreams } from "./icecream/icecreamReducer";
+export { fetchUsers, alterUserData, deleteUserData } from "./user/userReducer";
